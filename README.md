@@ -1,10 +1,10 @@
 # GroupBehaviors - Due March 24th before 10am
 
-Exercise 4
+##Exercise 4 - Group Behaviors
 
 Create a sketch that ultizes group behaviors. At minimum, incorporate separation, alignment and cohesion, and the ability to manipulate these resulting steering forces. A flock of agents can keep separate from each other, while seeking another agent or mouse. Create an ability for new agents to form and join.
 
-If you've incorporated group behaviors into your Project 1, include the ability of these resulting forces to change over time (Perlin noise is one way). Create multiple groups with the ability for the groups to interact.
+If you've incorporated group behaviors into your Project 1, include the ability of these resulting forces to change over time (Perlin noise is one way). Create multiple groups with the ability for the groups to interact. Also create a class to manage the groups.
 
 
 
