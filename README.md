@@ -1,5 +1,6 @@
 # GroupBehaviors - Due March 24th before 10am
 
+Exercise 4
 
 Create a sketch that ultizes group behaviors. At minimum, incorporate separation, alignment and cohesion, and the ability to manipulate these resulting steering forces. A flock of agents can keep separate from each other, while seeking another agent or mouse. Create an ability for new agents to form and join.
 
