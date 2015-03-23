@@ -63,6 +63,10 @@ abstract class Entity
   public abstract void update();
   public abstract void render();
   public abstract void lookAround(ArrayList<Entity> entityList);
+  public abstract void lookAround(ArrayList<Entity> entityList, 
+                                  boolean isSeperating, 
+                                  boolean isAligning, 
+                                  boolean isCohesing);
   
   protected float calcRotAngle()
   {

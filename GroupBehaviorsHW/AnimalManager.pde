@@ -1,6 +1,6 @@
 public static class AnimalManager
 {
-  static HashMap<String, ArrayList<Entity>> m_animalLists;
+  static HashMap<String, ArrayList<Entity>> m_animalLists = new HashMap();
   
   AnimalManager()
   {
@@ -10,14 +10,12 @@ public static class AnimalManager
   {
     for(String s : types)
     {
-      if(!m_animalLists.containsKey(s))
-      {
-        m_animalLists.put(s, new ArrayList<Entity>());
-      } 
+      addType(s);
     }
   }
   
-  ArrayList getList(String listName)
+  //////////////////////////////////////////////////////////////////////
+  public static ArrayList getList(String listName)
   {
     if(m_animalLists.containsKey(listName))
     {
@@ -25,7 +23,7 @@ public static class AnimalManager
     }
     return null;
   }
-  void addAnimal(String animalType, Entity animal)
+  public static void addAnimal(String animalType, Entity animal)
   {
     if(!m_animalLists.containsKey(animalType))
     {
@@ -36,8 +34,16 @@ public static class AnimalManager
       m_animalLists.get(animalType).add(animal);
     }
   }
+  public static void addType(String animalType)
+  {
+    if(!m_animalLists.containsKey(animalType))
+    {
+      m_animalLists.put(animalType, new ArrayList<Entity>());
+    } 
+  }
   
-  void updateAll()
+  //////////////////////////////////////////////////////////////////////
+  public static void updateAll()
   {
     for(String keys : m_animalLists.keySet())
     {
@@ -47,7 +53,7 @@ public static class AnimalManager
       }
     }
   }
-  void renderAll()
+  public static void renderAll()
   {
     for(String keys : m_animalLists.keySet())
     {
@@ -56,5 +62,66 @@ public static class AnimalManager
         animal.render();
       }
     }
+  }
+  
+  //////////////////////////////////////////////////////////////////////
+  //looking around functions
+  //////////////////////////////////////////////////////////////////////
+  public static void allLook()
+  {
+    for(String keys : m_animalLists.keySet()) //for each list
+    {
+      for(Entity animal : m_animalLists.get(keys)) //for each animal in each list
+      {
+        for(String entityListKey : m_animalLists.keySet()) //send the animal every entity list to look at
+        {
+          animal.lookAround(m_animalLists.get(entityListKey));
+        }
+      }
+    }
+  }
+  public static void allLookAt(ArrayList<Entity> targets)
+  {
+    for(String keys : m_animalLists.keySet()) //for each list
+    {
+      for(Entity animal : m_animalLists.get(keys)) //for each animal in each list
+      {
+        animal.lookAround(targets);
+      }
+    }
+  }
+  public static void allLookAt(String targets)
+  {
+    allLookAt(m_animalLists.get(targets));
+  }
+  public static void allLookAt(ArrayList<Entity> lookers, ArrayList<Entity> targets)
+  {
+    for(Entity animal : lookers) //for each animal in each list
+    {
+      animal.lookAround(targets);
+    }
+  }
+  public static void allLookAt(String lookers, String targets)
+  {
+    allLookAt(m_animalLists.get(lookers), m_animalLists.get(targets));
+  }
+  public static void allLookAt(ArrayList<Entity> lookers, 
+                               ArrayList<Entity> targets, 
+                               boolean isSeperating,
+                               boolean isAligning,
+                               boolean isCohesing)
+  {
+    for(Entity animal : lookers) //for each animal in each list
+    {
+      animal.lookAround(targets, isSeperating, isAligning, isCohesing);
+    }
+  }
+  public static void allLookAt(String lookers, 
+                               String targets, 
+                               boolean isSeperating,
+                               boolean isAligning,
+                               boolean isCohesing)
+  {
+    allLookAt(m_animalLists.get(lookers), m_animalLists.get(targets), isSeperating, isAligning, isCohesing);
   }
 }

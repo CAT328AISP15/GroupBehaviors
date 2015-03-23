@@ -1,7 +1,6 @@
 public class Minnow extends Entity
 {
   
-  
   Minnow()
   {
     m_maxLookDistance = 50;
@@ -44,6 +43,30 @@ public class Minnow extends Entity
       applyForce(alignForce);
     }
     if(FlockingBools.isCohesing)
+    {
+      PVector coheseForce = cohesion(entityList);
+      coheseForce.mult(1);
+      applyForce(coheseForce);
+    }
+  }
+  public void lookAround(ArrayList<Entity> entityList, 
+                         boolean isSeperating,
+                         boolean isAligning,
+                         boolean isCohesing)
+  {
+    if(isSeperating)
+    {
+      PVector sepForce = separate(entityList);
+      sepForce.mult(2);
+      applyForce(sepForce);
+    }
+    if(isAligning)
+    {
+      PVector alignForce = align(entityList);
+      alignForce.mult(3);
+      applyForce(alignForce);
+    }
+    if(isCohesing)
     {
       PVector coheseForce = cohesion(entityList);
       coheseForce.mult(1);
